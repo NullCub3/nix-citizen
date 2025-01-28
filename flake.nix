@@ -3,15 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    umu = {
-      url = "git+https://github.com/LovingMelody/umu-launcher/?dir=packaging\/nix&submodules=1&";
-      # Unreleased changed to umu in nixpkgs, we won't override it
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.umu.follows = "umu";
     };
     nix-github-actions = {
       url = "github:nix-community/nix-github-actions";
@@ -71,7 +65,7 @@
                   ) ./patches/ge-xwayland-pointer-warp-fix.patch;
               });
               star-citizen-helper = pkgs.callPackage ./pkgs/star-citizen-helper { };
-              inherit (inputs.umu.packages.${system}) umu-launcher;
+              inherit (pkgs) umu-launcher;
               dxvk-gplasync = warn "This package will be removed in a future update and is now just an alias for dxvk" pkgs.dxvk;
               star-citizen = inputs.nix-gaming.packages.${system}.star-citizen.override {
                 umu = self.packages.${system}.umu-launcher;
