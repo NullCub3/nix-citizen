@@ -4,9 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     umu = {
-      url = "git+https://github.com/LovingMelody/umu-launcher/?dir=packaging\/nix&submodules=1&";
-      # Unreleased changed to umu in nixpkgs, we won't override it
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
